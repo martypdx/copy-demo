@@ -1,5 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
+const copyFile = require('../lib/copy-file');
 
 const { CI, HOME } = process.env;
 const BASE_DIR = CI ? HOME : __dirname;
@@ -22,9 +23,23 @@ describe('copy file', () => {
     await copyFile(srcPath, destPath);
 
     // assert
-    const file = await fs.readFile(destPath);
+    const file = await fs.readFile(destPath, 'utf8');
     expect(file).toEqual('copy me');
+  });
 
+  it('gives bad file error', async () => {
+    // arrange
+    const destPath = path.join(TEST_DIR, 'copy.txt');
+    expect.assertions(1);
+    
+    // act 
+    try {
+      await copyFile('bad-file.txt', destPath);
+    }
+    catch(err) {
+      // assert
+      expect(err.message).toMatch('bad file');
+    }
   });
 
 });
