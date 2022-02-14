@@ -1,13 +1,14 @@
 # Asynchronous JavaScript
 
-## CPU Access
-
 - OS/Process paradigm
     - CPU
     - Memory
     - Networking
     - File System
     - ...
+
+## CPU Access
+
 - "Thread of Execution"
 - Quad Core    
 - Threading models
@@ -32,7 +33,7 @@
 Two primary async workflows:
 1. Sequential
 1. Parallel
-1. + Error Propagation
+1. +Error Propagation
 
 ### Callback
 
